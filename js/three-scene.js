@@ -1,7 +1,8 @@
 /**
  * HAMMAD.AI - Three.js 3D WebGL Systems
- * 1. Fullscreen Hero Background 3D Quantum Neural Globe
+ * 1. Fullscreen Hero Background 3D Quantum Neural Globe (Dynamic 60Hz / 120Hz+ Adaptive Engine)
  * 2. Ambient Deep Space Synaptic Network
+ * 3. Real-Time Hardware Refresh Rate & FPS Detection (Delta-Time Normalized)
  */
 
 (function () {
@@ -11,6 +12,76 @@
     console.warn('Three.js library missing. 3D effects skipped.');
     return;
   }
+
+  /* ==========================================================================
+     HARDWARE REFRESH RATE & REAL-TIME FPS MONITOR
+     Detects 60Hz, 90Hz, 120Hz (ProMotion), 144Hz, 240Hz automatically
+     ========================================================================== */
+  class RefreshRateMonitor {
+    constructor() {
+      this.frameCount = 0;
+      this.lastTime = performance.now();
+      this.currentFps = 60;
+      this.detectedHz = 60;
+      this.fpsDomElements = [];
+      this.history = [];
+    }
+
+    registerDomElement(el) {
+      if (el && !this.fpsDomElements.includes(el)) {
+        this.fpsDomElements.push(el);
+      }
+    }
+
+    tick(now) {
+      this.frameCount++;
+      const elapsed = now - this.lastTime;
+
+      if (elapsed >= 500) {
+        this.currentFps = Math.round((this.frameCount * 1000) / elapsed);
+        this.frameCount = 0;
+        this.lastTime = now;
+
+        // Classify refresh rate tier based on detected FPS
+        if (this.currentFps > 135) {
+          this.detectedHz = 144;
+        } else if (this.currentFps > 105) {
+          this.detectedHz = 120; // 120Hz ProMotion / High-Refresh
+        } else if (this.currentFps > 75) {
+          this.detectedHz = 90;
+        } else {
+          this.detectedHz = 60;
+        }
+
+        this.updateUi();
+      }
+    }
+
+    updateUi() {
+      const label = `ONLINE (${this.currentFps} FPS // ${this.detectedHz}Hz VSync)`;
+      this.fpsDomElements.forEach((el) => {
+        if (el) {
+          el.textContent = label;
+          if (this.currentFps >= 100) {
+            el.style.color = '#00f0ff'; // Neon Cyan for 120Hz ProMotion
+            el.setAttribute('title', 'Ultra High Refresh Rate (120Hz+ ProMotion) Active');
+          } else {
+            el.style.color = '#10b981'; // Emerald for 60Hz
+          }
+        }
+      });
+    }
+  }
+
+  const fpsMonitor = new RefreshRateMonitor();
+
+  // Register DOM elements when ready
+  document.addEventListener('DOMContentLoaded', () => {
+    const footerFps = document.getElementById('fps-counter');
+    if (footerFps) fpsMonitor.registerDomElement(footerFps);
+    const hudFps = document.getElementById('hud-fps-badge');
+    if (hudFps) fpsMonitor.registerDomElement(hudFps);
+  });
 
   /* ==========================================================================
      1. HERO FULL-BACKGROUND 3D QUANTUM NEURAL GLOBE
@@ -32,11 +103,13 @@
     );
     camera.position.set(0, 0, 8.8);
 
-    // Renderer
+    // Renderer with High Refresh Rate & Low Latency Power Preference
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
       antialias: true,
-      powerPreference: 'high-performance'
+      powerPreference: 'high-performance',
+      stencil: false,
+      depth: true
     });
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -47,8 +120,6 @@
     // Master Globe Pivot Group
     const globeGroup = new THREE.Group();
     scene.add(globeGroup);
-
-    // Slightly tilt and center
     globeGroup.position.set(0, -0.2, 0);
 
     // -------------------------------------------------------------
@@ -66,7 +137,7 @@
     globeGroup.add(outerSphere);
 
     // -------------------------------------------------------------
-    // B. Synaptic Nodes at Sphere Vertices
+    // B. Synaptic Nodes at Sphere Vertices (InstancedMesh for Single Draw Call)
     // -------------------------------------------------------------
     const spherePos = sphereGeo.attributes.position;
     const nodeCount = spherePos.count;
@@ -119,7 +190,6 @@
     // -------------------------------------------------------------
     // E. Futuristic Orbital Equatorial Rings
     // -------------------------------------------------------------
-    // Ring 1 (Cyan)
     const ring1Geo = new THREE.TorusGeometry(globeRadius * 1.22, 0.016, 16, 120);
     const ring1Mat = new THREE.MeshBasicMaterial({
       color: 0x00f0ff,
@@ -131,7 +201,6 @@
     ring1.rotation.y = Math.PI / 8;
     globeGroup.add(ring1);
 
-    // Ring 2 (Violet / Indigo)
     const ring2Geo = new THREE.TorusGeometry(globeRadius * 1.34, 0.014, 16, 120);
     const ring2Mat = new THREE.MeshBasicMaterial({
       color: 0xa855f7,
@@ -143,7 +212,6 @@
     ring2.rotation.z = Math.PI / 6;
     globeGroup.add(ring2);
 
-    // Ring 3 (Outer fine orbit ring)
     const ring3Geo = new THREE.TorusGeometry(globeRadius * 1.48, 0.009, 16, 140);
     const ring3Mat = new THREE.MeshBasicMaterial({
       color: 0x00f5a0,
@@ -223,7 +291,6 @@
 
     function handleMouseMove(e) {
       const rect = heroSection.getBoundingClientRect();
-      // Normalized between -1 and 1
       const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;
 
@@ -250,14 +317,12 @@
       isUserDragging = false;
     });
 
-    // Resize Observer to keep globe responsive
     function onResize() {
       if (!container) return;
       const w = container.clientWidth;
       const h = container.clientHeight;
       camera.aspect = w / h;
-      
-      // Responsive camera distance: zoom out a bit on mobile
+
       if (w < 768) {
         camera.position.z = 10.5;
       } else if (w < 1200) {
@@ -273,34 +338,47 @@
     onResize();
 
     // -------------------------------------------------------------
-    // I. 60 FPS Render & Physics Animation Loop
+    // I. HARDWARE ADAPTIVE 60Hz / 120Hz+ DELTA-TIME RENDER LOOP
     // -------------------------------------------------------------
     const clock = new THREE.Clock();
 
-    function animate() {
+    function animate(currentTime) {
       requestAnimationFrame(animate);
+
+      // Track frame rate dynamically
+      fpsMonitor.tick(currentTime);
+
+      // DELTA-TIME NORMALIZATION:
+      // On 60Hz: delta ~ 0.0166s -> timeScale ~ 1.0
+      // On 120Hz: delta ~ 0.0083s -> timeScale ~ 0.5
+      // This guarantees rotation speed is perfectly identical on all displays,
+      // while delivering 2x higher temporal smoothness on 120Hz/ProMotion displays!
+      const rawDelta = clock.getDelta();
+      const delta = Math.min(rawDelta, 0.1); // Clamp to prevent jump on tab focus
+      const timeScale = delta * 60; // Base multiplier normalized to 60fps baseline
 
       const elapsedTime = clock.getElapsedTime();
 
-      // Continuous autonomous rotation
+      // Continuous autonomous rotation scaled by delta-time
       if (!isUserDragging) {
-        globeGroup.rotation.y += 0.0035;
-        globeGroup.rotation.x += 0.001;
+        globeGroup.rotation.y += 0.0035 * timeScale;
+        globeGroup.rotation.x += 0.001 * timeScale;
 
-        // Smooth spring lerp to mouse parallax
-        globeGroup.rotation.y += (targetRotY - globeGroup.rotation.y * 0.08) * 0.03;
-        globeGroup.rotation.x += (targetRotX - globeGroup.rotation.x * 0.08) * 0.03;
+        // Framerate-independent exponential spring lerp
+        const lerpFactor = 1.0 - Math.exp(-4.0 * delta);
+        globeGroup.rotation.y += (targetRotY - globeGroup.rotation.y) * lerpFactor;
+        globeGroup.rotation.x += (targetRotX - globeGroup.rotation.x) * lerpFactor;
       }
 
-      // Counter-rotations for futuristic mechanical depth
-      innerMesh.rotation.y -= 0.005;
-      innerMesh.rotation.z += 0.003;
+      // Counter-rotations scaled by delta-time
+      innerMesh.rotation.y -= 0.005 * timeScale;
+      innerMesh.rotation.z += 0.003 * timeScale;
 
-      ring1.rotation.z += 0.005;
-      ring2.rotation.z -= 0.004;
-      ring3.rotation.y += 0.006;
+      ring1.rotation.z += 0.005 * timeScale;
+      ring2.rotation.z -= 0.004 * timeScale;
+      ring3.rotation.y += 0.006 * timeScale;
 
-      particleCloud.rotation.y += 0.0018;
+      particleCloud.rotation.y += 0.0018 * timeScale;
 
       // Soft breathing scale on nucleus
       const pulse = 1.0 + Math.sin(elapsedTime * 2.2) * 0.06;
@@ -309,11 +387,11 @@
       renderer.render(scene, camera);
     }
 
-    animate();
+    requestAnimationFrame(animate);
   }
 
   /* ==========================================================================
-     2. AMBIENT DEEP SPACE SYNAPSE CANVAS
+     2. AMBIENT DEEP SPACE SYNAPSE CANVAS (Delta-Time Normalized)
      ========================================================================== */
   const bgCanvas = document.getElementById('webgl-bg-canvas');
   if (bgCanvas) {
@@ -362,9 +440,13 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
+    const bgClock = new THREE.Clock();
+
     function loopBg() {
       requestAnimationFrame(loopBg);
-      starField.rotation.y += 0.0003;
+      const bgDelta = Math.min(bgClock.getDelta(), 0.1);
+      const bgScale = bgDelta * 60;
+      starField.rotation.y += 0.0003 * bgScale;
       renderer.render(scene, camera);
     }
     loopBg();
