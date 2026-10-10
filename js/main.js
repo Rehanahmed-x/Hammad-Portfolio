@@ -532,12 +532,64 @@
       mobileToggle.classList.toggle('active');
     });
 
-    navLinksList.forEach((link) => {
+    const allNavLinks = document.querySelectorAll('.nav-link, .mobile-only-cta a');
+    allNavLinks.forEach((link) => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('open');
         mobileToggle.classList.remove('active');
       });
     });
   }
+
+  /* ==========================================================================
+     11. MOBILE HORIZONTAL CAROUSEL SYNC (Services & Testimonials)
+     ========================================================================== */
+  function initMobileCarousels() {
+    const carousels = [
+      {
+        grid: document.querySelector('.services-bento-grid'),
+        indicator: document.getElementById('services-swipe-indicator')
+      },
+      {
+        grid: document.querySelector('.testimonials-grid'),
+        indicator: document.getElementById('testimonials-swipe-indicator')
+      }
+    ];
+
+    carousels.forEach(({ grid, indicator }) => {
+      if (!grid || !indicator) return;
+      const dots = indicator.querySelectorAll('.swipe-dot');
+      const cards = grid.children;
+      if (!dots.length || !cards.length) return;
+
+      grid.addEventListener('scroll', () => {
+        const scrollLeft = grid.scrollLeft;
+        const cardWidth = cards[0].offsetWidth + 12;
+        const activeIndex = Math.min(
+          dots.length - 1,
+          Math.max(0, Math.round(scrollLeft / cardWidth))
+        );
+
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('active', idx === activeIndex);
+        });
+      }, { passive: true });
+
+      dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+          sound.clickChime();
+          const targetCard = cards[idx];
+          if (targetCard) {
+            grid.scrollTo({
+              left: targetCard.offsetLeft - grid.offsetLeft,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+  }
+
+  initMobileCarousels();
 
 })();

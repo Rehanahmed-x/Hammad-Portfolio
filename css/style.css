@@ -61,6 +61,8 @@
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -1790,7 +1792,18 @@ textarea.form-input {
 }
 
 /* ==========================================================================
-   Responsive Breakpoints
+   Mobile-Specific Components (Hidden on Desktop)
+   ========================================================================== */
+.mobile-only-cta {
+  display: none;
+}
+
+.mobile-swipe-indicator {
+  display: none;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints: Tablet & Large Screens (max-width: 1024px)
    ========================================================================== */
 @media (max-width: 1024px) {
   .hero-telemetry-row {
@@ -1813,17 +1826,20 @@ textarea.form-input {
   }
 }
 
+/* ==========================================================================
+   Responsive Breakpoints: Medium Tablet & Mobile Nav (max-width: 860px)
+   ========================================================================== */
 @media (max-width: 860px) {
   .site-nav-wrapper {
-    padding: 12px 14px;
+    padding: 10px 14px;
   }
   .site-nav-island {
-    height: 56px;
+    height: 52px;
     padding: 0 10px 0 16px;
   }
   .nav-center-menu {
     position: fixed;
-    top: 74px;
+    top: 68px;
     left: 14px;
     right: 14px;
     background: rgba(6, 9, 16, 0.96);
@@ -1831,7 +1847,7 @@ textarea.form-input {
     -webkit-backdrop-filter: blur(28px);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 20px;
-    padding: 20px 16px;
+    padding: 18px 14px;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85);
     transform: translateY(-20px);
     opacity: 0;
@@ -1848,7 +1864,7 @@ textarea.form-input {
     width: 100%;
     background: transparent;
     border: none;
-    gap: 8px;
+    gap: 6px;
     padding: 0;
   }
   .nav-link {
@@ -1856,6 +1872,11 @@ textarea.form-input {
     text-align: center;
     padding: 10px;
     font-size: 0.95rem;
+    border-radius: 12px;
+  }
+  .mobile-only-cta {
+    display: block;
+    width: 100%;
   }
   .mobile-nav-toggle {
     display: flex;
@@ -1863,32 +1884,810 @@ textarea.form-input {
   .btn-nav-cta {
     display: none;
   }
+}
+
+/* ==========================================================================
+   Responsive Breakpoints: Mobile Phones (max-width: 768px)
+   Executive Compact Architecture - Eliminates Exhausting Scroll & Maximizes Density
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Container Padding */
+  .container {
+    padding: 0 14px;
+  }
+
+  /* Compact Section Paddings (60% Vertical Height Saved) */
+  .services-section,
+  .agent-simulator-section,
+  .roi-calculator-section,
+  .portfolio-section,
+  .about-section,
+  .testimonials-section,
+  .contact-section {
+    padding: 44px 0 !important;
+  }
+
+  .section-header {
+    margin-bottom: 20px !important;
+  }
+
+  .section-tag {
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    margin-bottom: 10px;
+    letter-spacing: 0.8px;
+  }
+
+  .section-title {
+    font-size: 1.62rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 8px !important;
+    letter-spacing: -0.02em;
+  }
+
+  .section-desc {
+    font-size: 0.86rem !important;
+    line-height: 1.5 !important;
+    max-width: 100% !important;
+    margin: 0 auto;
+  }
+
+  /* -------------------------------------------------------------
+     Hero Section Compact Phone Layout
+     ------------------------------------------------------------- */
+  .hero-section {
+    min-height: auto !important;
+    padding-top: calc(var(--nav-height) + 10px) !important;
+    padding-bottom: 32px !important;
+  }
+
+  /* Prevent 3D globe canvas from intercepting touch scroll */
+  .hero-3d-bg-wrapper {
+    pointer-events: none !important;
+  }
+
+  .hero-pill-badge {
+    padding: 5px 12px;
+    font-size: 0.72rem;
+    margin-bottom: 12px;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hero-main-title {
+    font-size: clamp(1.75rem, 6.8vw, 2.2rem) !important;
+    line-height: 1.15 !important;
+    margin-bottom: 12px !important;
+    letter-spacing: -0.025em;
+  }
+
+  .hero-main-subtitle {
+    font-size: 0.88rem !important;
+    line-height: 1.52 !important;
+    margin-bottom: 18px !important;
+  }
+
+  .hero-btn-cluster {
+    flex-direction: column !important;
+    width: 100%;
+    gap: 9px !important;
+    margin-bottom: 22px !important;
+  }
+
+  .hero-btn-cluster .btn-primary,
+  .hero-btn-cluster .btn-secondary {
+    width: 100% !important;
+    justify-content: center;
+    padding: 11px 18px !important;
+    font-size: 0.88rem !important;
+  }
+
+  /* Telemetry: Crisp 2x2 Phone Grid Instead Of 4 Stacked Screens */
   .hero-telemetry-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
   }
+
+  .hud-tile {
+    padding: 9px 11px !important;
+    border-radius: 12px !important;
+  }
+
+  .hud-tile-top {
+    font-size: 0.65rem !important;
+    gap: 5px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .hud-tile-top svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .hud-tile-value {
+    font-size: 1.05rem !important;
+  }
+
+  .trust-strip {
+    margin-top: 20px !important;
+  }
+
+  .trust-label {
+    font-size: 0.65rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .trust-badges-bar {
+    gap: 6px !important;
+  }
+
+  .trust-badge-item {
+    font-size: 0.7rem !important;
+    padding: 3px 8px !important;
+  }
+
+  /* -------------------------------------------------------------
+     Services Bento Grid: Swipeable Horizontal Carousel (Snap-Scroll)
+     Reduces ~2,500px of scrolling to ONE compact card view!
+     ------------------------------------------------------------- */
   .services-bento-grid {
-    grid-template-columns: 1fr;
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 12px !important;
+    padding: 4px 2px 10px 2px !important;
+    scrollbar-width: none !important;
+    margin: 0 -14px;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
   }
+
+  .services-bento-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .bento-card {
+    flex: 0 0 84vw !important;
+    max-width: 320px !important;
+    scroll-snap-align: center !important;
+    padding: 18px 16px !important;
+    border-radius: 16px !important;
+    transform: none !important;
+  }
+
+  .bento-icon-wrapper {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 10px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .bento-icon-wrapper svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .bento-badge {
+    font-size: 0.62rem !important;
+    padding: 2px 6px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .bento-title {
+    font-size: 1.08rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  .bento-desc {
+    font-size: 0.8rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .bento-check-list {
+    gap: 6px !important;
+    margin-bottom: 12px !important;
+    padding-top: 10px !important;
+  }
+
+  .bento-check-list li {
+    font-size: 0.74rem !important;
+    gap: 6px !important;
+  }
+
+  .bento-check-list li svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+  }
+
+  .bento-footer {
+    padding-top: 10px !important;
+    margin-top: auto;
+  }
+
+  .bento-pill {
+    font-size: 0.64rem !important;
+    padding: 2px 6px !important;
+  }
+
+  .bento-action-link {
+    font-size: 0.78rem !important;
+  }
+
+  /* Carousel Indicators */
+  .mobile-swipe-indicator {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .swipe-dots {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .swipe-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .swipe-dot.active {
+    width: 16px;
+    border-radius: 100px;
+    background: var(--cyan-primary);
+    box-shadow: 0 0 8px var(--cyan-primary);
+  }
+
+  .swipe-text {
+    font-family: var(--font-tech);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  /* -------------------------------------------------------------
+     Agent Simulator / Terminal Sandbox Compact Layout
+     ------------------------------------------------------------- */
+  .terminal-frame {
+    border-radius: 14px !important;
+  }
+
+  .terminal-titlebar {
+    padding: 8px 12px !important;
+  }
+
+  .mac-dots {
+    gap: 4px !important;
+  }
+
+  .mac-dot {
+    width: 9px !important;
+    height: 9px !important;
+  }
+
+  .terminal-kernel-title {
+    font-size: 0.65rem !important;
+  }
+
+  .kernel-status-badge {
+    font-size: 0.62rem !important;
+    padding: 2px 6px !important;
+  }
+
   .terminal-inner-grid {
-    grid-template-columns: 1fr;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: auto !important;
   }
+
+  /* Horizontal Mission Selector Strip */
   .terminal-sidebar {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    gap: 6px !important;
+    padding: 8px 10px !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
   }
-  .case-studies-grid {
-    grid-template-columns: 1fr;
+
+  .terminal-sidebar::-webkit-scrollbar {
+    display: none !important;
   }
-  .testimonials-grid {
-    grid-template-columns: 1fr;
+
+  .sidebar-heading {
+    display: none !important;
   }
-  .form-grid-pair {
-    grid-template-columns: 1fr;
+
+  .scenario-pill-btn {
+    flex: 0 0 auto !important;
+    padding: 6px 10px !important;
+    border-radius: 8px !important;
+    gap: 6px !important;
   }
-  .contact-card-box {
-    padding: 30px 20px;
+
+  .pill-icon {
+    width: 22px !important;
+    height: 22px !important;
+    border-radius: 5px !important;
   }
+
+  .pill-icon svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .pill-meta h5 {
+    font-size: 0.74rem !important;
+    white-space: nowrap !important;
+    margin-bottom: 0 !important;
+  }
+
+  .pill-meta p {
+    display: none !important;
+  }
+
+  .terminal-console-viewport {
+    padding: 12px !important;
+    max-height: 230px !important;
+    font-size: 0.72rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .log-line {
+    margin-bottom: 6px !important;
+  }
+
+  /* -------------------------------------------------------------
+     AI ROI Calculator Compact Layout
+     ------------------------------------------------------------- */
   .calculator-glass-card {
-    padding: 26px 18px;
+    padding: 16px 12px !important;
+    border-radius: 16px !important;
+    gap: 16px !important;
+  }
+
+  .sliders-stack {
+    gap: 12px !important;
+  }
+
+  .slider-unit {
+    gap: 4px !important;
+  }
+
+  .slider-top-row label {
+    font-size: 0.76rem !important;
+    line-height: 1.3;
+  }
+
+  .slider-badge-val {
+    font-size: 0.74rem !important;
+    padding: 2px 6px !important;
+  }
+
+  .custom-range-slider {
+    height: 4px !important;
+  }
+
+  .custom-range-slider::-webkit-slider-thumb {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .calc-display-panel {
+    padding: 14px 12px !important;
+    border-radius: 12px !important;
+  }
+
+  .display-metrics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .metric-cell-label {
+    font-size: 0.64rem !important;
+    margin-bottom: 2px !important;
+  }
+
+  .metric-cell-number {
+    font-size: 1.25rem !important;
+  }
+
+  .calc-display-panel .btn-primary {
+    padding: 10px !important;
+    font-size: 0.82rem !important;
+  }
+
+  /* -------------------------------------------------------------
+     Case Studies Compact Layout
+     ------------------------------------------------------------- */
+  .filter-bar-wrap {
+    display: flex !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    gap: 6px !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    margin: 0 -14px 16px -14px !important;
+    padding: 0 14px 6px 14px !important;
+  }
+
+  .filter-bar-wrap::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .filter-chip-btn {
+    flex: 0 0 auto !important;
+    padding: 5px 12px !important;
+    font-size: 0.74rem !important;
+    white-space: nowrap !important;
+  }
+
+  .case-studies-grid {
+    gap: 14px !important;
+  }
+
+  .case-card {
+    border-radius: 14px !important;
+    transform: none !important;
+  }
+
+  .case-media {
+    height: 150px !important;
+  }
+
+  .case-badge-floating {
+    top: 8px !important;
+    left: 8px !important;
+    font-size: 0.62rem !important;
+    padding: 2px 7px !important;
+  }
+
+  .case-body {
+    padding: 14px 12px !important;
+  }
+
+  .case-title {
+    font-size: 1.08rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  .case-summary {
+    font-size: 0.8rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .case-metrics-bar {
+    padding: 7px 8px !important;
+    gap: 4px !important;
+    margin-bottom: 10px !important;
+    border-radius: 8px !important;
+  }
+
+  .cm-num {
+    font-size: 0.96rem !important;
+  }
+
+  .cm-label {
+    font-size: 0.6rem !important;
+  }
+
+  .case-tags-list {
+    gap: 4px !important;
+  }
+
+  .case-tag {
+    font-size: 0.66rem !important;
+    padding: 2px 6px !important;
+  }
+
+  /* -------------------------------------------------------------
+     About Section: Compact Executive Avatar Layout
+     ------------------------------------------------------------- */
+  .about-duo-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    align-items: center !important;
+  }
+
+  .about-photo-wrapper {
+    width: 105px !important;
+    height: 105px !important;
+    border-radius: 50% !important;
+    padding: 3px !important;
+    margin: 0 auto !important;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.35) !important;
+    flex-shrink: 0 !important;
+  }
+
+  .photo-inner {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50% !important;
+    aspect-ratio: 1 / 1 !important;
+  }
+
+  .photo-inner img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+  }
+
+  .about-text-column {
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .about-lead-text {
+    font-size: 0.88rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 10px !important;
+    text-align: left !important;
+  }
+
+  .about-paragraphs {
+    font-size: 0.82rem !important;
+    line-height: 1.5 !important;
+    gap: 6px !important;
+    margin-bottom: 14px !important;
+    text-align: left !important;
+  }
+
+  .credentials-duo {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    margin-bottom: 14px !important;
+    text-align: left !important;
+  }
+
+  .cred-card {
+    padding: 9px 10px !important;
+    border-radius: 8px !important;
+    gap: 8px !important;
+  }
+
+  .cred-card h4 {
+    font-size: 0.82rem !important;
+    margin-bottom: 1px !important;
+  }
+
+  .cred-card p {
+    font-size: 0.72rem !important;
+  }
+
+  .tech-arsenal-chips {
+    justify-content: center !important;
+    gap: 5px !important;
+  }
+
+  .tech-chip {
+    font-size: 0.68rem !important;
+    padding: 3px 8px !important;
+  }
+
+  /* -------------------------------------------------------------
+     Testimonials: Swipeable Horizontal Carousel (Snap-Scroll)
+     ------------------------------------------------------------- */
+  .testimonials-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 12px !important;
+    padding: 4px 2px 10px 2px !important;
+    scrollbar-width: none !important;
+    margin: 0 -14px;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .testimonials-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .testimonial-quote-card {
+    flex: 0 0 85vw !important;
+    max-width: 320px !important;
+    scroll-snap-align: center !important;
+    padding: 16px 14px !important;
+    border-radius: 14px !important;
+    transform: none !important;
+  }
+
+  .quote-stars-row {
+    font-size: 0.76rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  .quote-copy {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .client-author-info {
+    gap: 8px !important;
+  }
+
+  .author-initials {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.74rem !important;
+  }
+
+  .author-meta h5 {
+    font-size: 0.82rem !important;
+  }
+
+  .author-meta p {
+    font-size: 0.68rem !important;
+  }
+
+  /* -------------------------------------------------------------
+     Contact / Consultation Form Compact Layout
+     ------------------------------------------------------------- */
+  .contact-card-box {
+    padding: 18px 12px !important;
+    border-radius: 16px !important;
+    gap: 18px !important;
+  }
+
+  .contact-left-col {
+    text-align: left !important;
+  }
+
+  .direct-channels-list {
+    gap: 8px !important;
+    margin-top: 12px !important;
+  }
+
+  .channel-link {
+    padding: 8px 10px !important;
+    border-radius: 8px !important;
+    gap: 8px !important;
+  }
+
+  .channel-icon-pill {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 6px !important;
+  }
+
+  .channel-icon-pill svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .channel-info h6 {
+    font-size: 0.62rem !important;
+  }
+
+  .channel-info p {
+    font-size: 0.76rem !important;
+  }
+
+  .contact-form {
+    gap: 10px !important;
+  }
+
+  .form-grid-pair {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .form-field {
+    gap: 3px !important;
+  }
+
+  .form-field label {
+    font-size: 0.72rem !important;
+  }
+
+  .form-input {
+    padding: 9px 11px !important;
+    font-size: 0.82rem !important;
+    border-radius: 8px !important;
+  }
+
+  textarea.form-input {
+    min-height: 75px !important;
+  }
+
+  .services-checkboxes {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 5px !important;
+  }
+
+  .checkbox-label {
+    padding: 6px 7px !important;
+    font-size: 0.7rem !important;
+    border-radius: 6px !important;
+    gap: 5px !important;
+  }
+
+  .contact-form button[type="submit"] {
+    padding: 11px !important;
+    font-size: 0.84rem !important;
+  }
+
+  /* -------------------------------------------------------------
+     Footer Compact Layout
+     ------------------------------------------------------------- */
+  .site-footer {
+    padding: 30px 0 16px 0 !important;
+  }
+
+  .footer-main-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    margin-bottom: 18px !important;
+    text-align: center !important;
+  }
+
+  .footer-bio .brand-logo {
+    justify-content: center !important;
+  }
+
+  .footer-bio p {
+    margin: 8px auto 0 !important;
+    font-size: 0.8rem !important;
+    max-width: 100% !important;
+  }
+
+  .footer-nav-col h5 {
+    font-size: 0.76rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  .footer-links-list {
+    gap: 5px !important;
+  }
+
+  .footer-links-list a {
+    font-size: 0.78rem !important;
+  }
+
+  .footer-bottom-row {
+    flex-direction: column !important;
+    gap: 5px !important;
+    text-align: center !important;
+    font-size: 0.7rem !important;
+    padding-top: 12px !important;
+  }
+}
+
+/* ==========================================================================
+   Small Mobile Phones (max-width: 380px)
+   ========================================================================== */
+@media (max-width: 380px) {
+  .hero-main-title {
+    font-size: 1.62rem !important;
+  }
+  .hud-tile-value {
+    font-size: 0.95rem !important;
+  }
+  .services-checkboxes {
+    grid-template-columns: 1fr !important;
+  }
+  .bento-card,
+  .testimonial-quote-card {
+    flex: 0 0 90vw !important;
   }
 }
