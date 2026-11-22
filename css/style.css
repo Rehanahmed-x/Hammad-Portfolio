@@ -1,5 +1,5 @@
 /* ==========================================================================
-   HAMMAD.AI - Modern Luxury Enterprise AI Design System
+   GREEKVEX.AI - Modern Luxury Enterprise AI Design System
    High-End Silicon Valley Aesthetic (Linear / Vercel / Apple Pro Inspired)
    ========================================================================== */
 
@@ -461,15 +461,23 @@ body {
 /* Mobile Toggle Hamburger */
 .mobile-nav-toggle {
   display: none;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   cursor: pointer;
-  padding: 9px;
+  padding: 10px 8px;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+  transition: all var(--tr-fast);
+  touch-action: manipulation;
+}
+
+.mobile-nav-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(0, 240, 255, 0.4);
 }
 
 .mobile-nav-toggle .ham-line {
@@ -478,7 +486,16 @@ body {
   height: 2px;
   background: #fff;
   border-radius: 2px;
-  transition: transform 0.2s, opacity 0.2s;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  transform-origin: center;
+}
+
+.mobile-nav-toggle.active .ham-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-nav-toggle.active .ham-line:nth-child(2) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* High-End Silicon Valley Buttons */
@@ -500,6 +517,7 @@ body {
   transition: transform var(--tr-spring), box-shadow var(--tr-fast);
   position: relative;
   overflow: hidden;
+  touch-action: manipulation;
 }
 
 .btn-primary:hover {
@@ -522,21 +540,13 @@ body {
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(12px);
   transition: all var(--tr-fast);
+  touch-action: manipulation;
 }
 
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.22);
   transform: translateY(-2px);
-}
-
-.mobile-nav-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  padding: 6px;
 }
 
 /* ==========================================================================
@@ -746,8 +756,10 @@ body {
 
 .services-bento-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .bento-card {
@@ -860,7 +872,7 @@ body {
 .bento-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-top: auto;
   padding-top: 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -1074,130 +1086,264 @@ body {
 }
 
 /* ==========================================================================
-   AI ROI Calculator (Silicon Valley Style)
+   Special Offer Section (Huge High-Converting VIP Package)
    ========================================================================== */
-.roi-calculator-section {
+.special-offer-section {
   position: relative;
-  padding: 110px 0;
+  padding: 120px 0;
   z-index: 10;
 }
 
-.calculator-glass-card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 24px;
-  padding: 44px;
-  backdrop-filter: blur(20px);
+.special-offer-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(8, 12, 22, 0.96) 100%);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  border-radius: 28px;
+  padding: 48px;
+  backdrop-filter: blur(24px);
+  box-shadow: 0 25px 65px -15px rgba(0, 240, 255, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.08);
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1.25fr 0.85fr;
   gap: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.special-offer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00f0ff, #10b981, transparent);
+}
+
+.offer-badge-floating {
+  display: inline-flex;
   align-items: center;
-  box-shadow: var(--shadow-card);
-}
-
-.sliders-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.slider-unit {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.slider-top-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.slider-top-row label {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #fff;
-}
-
-.slider-badge-val {
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.3);
   font-family: var(--font-code);
-  font-size: 1rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--cyan-primary);
-  background: rgba(0, 240, 255, 0.08);
-  padding: 4px 12px;
-  border-radius: 6px;
-  border: 1px solid rgba(0, 240, 255, 0.2);
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.custom-range-slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 6px;
-  border-radius: 3px;
-  background: #1e293b;
-  outline: none;
-  cursor: pointer;
+.offer-heading {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
 }
 
-.custom-range-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--cyan-primary);
-  box-shadow: 0 0 14px var(--cyan-primary);
-  cursor: pointer;
-  transition: transform 0.1s;
-}
-
-.custom-range-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-}
-
-.calc-display-panel {
-  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9) 0%, rgba(9, 13, 22, 0.95) 100%);
-  border: 1px solid rgba(0, 240, 255, 0.22);
-  border-radius: 20px;
-  padding: 34px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-}
-
-.display-metrics-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
+.offer-subtext {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
   margin-bottom: 28px;
 }
 
-.metric-cell {
+.offer-grid-features {
   display: flex;
   flex-direction: column;
+  gap: 14px;
 }
 
-.metric-cell-label {
-  font-size: 0.78rem;
+.offer-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 14px 18px;
+  transition: all var(--tr-fast);
+}
+
+.offer-feature-item:hover {
+  background: rgba(0, 240, 255, 0.04);
+  border-color: rgba(0, 240, 255, 0.25);
+  transform: translateX(4px);
+}
+
+.offer-feature-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(0, 240, 255, 0.12);
+  color: var(--cyan-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.offer-feature-item h4 {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.offer-feature-item p {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.feature-tag-free {
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--emerald-accent);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Pricing Box on Right */
+.offer-pricing-box {
+  background: linear-gradient(160deg, rgba(18, 26, 46, 0.95) 0%, rgba(10, 14, 26, 0.98) 100%);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 22px;
+  padding: 38px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.offer-pricing-box::before {
+  content: 'BEST VALUE';
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-family: var(--font-code);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: var(--cyan-primary);
+  color: #020617;
+}
+
+.offer-val-label {
+  font-size: 0.82rem;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 4px;
 }
 
-.metric-cell-number {
-  font-family: var(--font-tech);
-  font-size: 2rem;
+.offer-val-strike {
+  font-size: 1.15rem;
+  color: #ef4444;
+  text-decoration: line-through;
   font-weight: 700;
-  color: #fff;
+  margin-left: 6px;
 }
 
-.metric-cell-number.glow-cyan {
+.offer-huge-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin: 12px 0 16px 0;
+}
+
+.offer-huge-price .currency {
+  font-size: 2rem;
+  font-weight: 800;
   color: var(--cyan-primary);
-  text-shadow: 0 0 16px rgba(0, 240, 255, 0.35);
 }
 
-.metric-cell-number.glow-green {
+.offer-huge-price .price-num {
+  font-family: var(--font-tech);
+  font-size: 3.8rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 0 24px rgba(0, 240, 255, 0.4);
+}
+
+.offer-huge-price .period {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.offer-savings-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
   color: var(--emerald-accent);
-  text-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
+  font-family: var(--font-code);
+  font-size: 0.76rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.offer-guarantee-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 18px 0 26px 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.offer-guarantee-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: #e2e8f0;
+}
+
+.offer-guarantee-list li svg {
+  color: var(--emerald-accent);
+  flex-shrink: 0;
+}
+
+.offer-cta-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 1rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.offer-scarcity-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 /* ==========================================================================
@@ -1367,118 +1513,6 @@ body {
 }
 
 /* ==========================================================================
-   About Hammad (Refined Executive Presentation)
-   ========================================================================== */
-.about-section {
-  position: relative;
-  padding: 120px 0;
-  z-index: 10;
-}
-
-.about-duo-grid {
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 56px;
-  align-items: center;
-}
-
-.about-photo-wrapper {
-  position: relative;
-  border-radius: 24px;
-  padding: 10px;
-  background: linear-gradient(145deg, rgba(0, 240, 255, 0.2), rgba(99, 102, 241, 0.15));
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), var(--glow-subtle);
-}
-
-.photo-inner {
-  border-radius: 18px;
-  overflow: hidden;
-  position: relative;
-  aspect-ratio: 1 / 1;
-}
-
-.photo-inner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.about-photo-wrapper:hover .photo-inner img {
-  transform: scale(1.03);
-}
-
-.about-lead-text {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #f1f5f9;
-  line-height: 1.7;
-  margin-bottom: 20px;
-}
-
-.about-paragraphs {
-  color: var(--text-secondary);
-  font-size: 0.98rem;
-  line-height: 1.75;
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.credentials-duo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 30px;
-}
-
-.cred-card {
-  padding: 18px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--glass-border);
-  display: flex;
-  gap: 12px;
-}
-
-.cred-card h4 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 3px;
-  color: #fff;
-}
-
-.cred-card p {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-}
-
-.tech-arsenal-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.tech-chip {
-  padding: 6px 14px;
-  border-radius: 100px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--glass-border);
-  font-family: var(--font-code);
-  font-size: 0.82rem;
-  color: #cbd5e1;
-  transition: all var(--tr-fast);
-}
-
-.tech-chip:hover {
-  background: rgba(0, 240, 255, 0.08);
-  border-color: var(--cyan-primary);
-  color: var(--cyan-primary);
-  transform: translateY(-2px);
-}
-
-/* ==========================================================================
    Client Testimonials
    ========================================================================== */
 .testimonials-section {
@@ -1568,14 +1602,18 @@ body {
 
 .contact-card-box {
   background: var(--glass-bg);
-  border: 1px solid rgba(0, 240, 255, 0.2);
-  border-radius: 26px;
-  padding: 56px;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  border-radius: 28px;
+  padding: 52px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), var(--glow-subtle);
   backdrop-filter: blur(24px);
   display: grid;
   grid-template-columns: 1fr 1.25fr;
-  gap: 56px;
+  gap: 48px;
+  max-width: 1140px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .direct-channels-list {
@@ -1615,34 +1653,49 @@ body {
   justify-content: center;
 }
 
+.channel-info {
+  min-width: 0;
+  overflow: hidden;
+}
+
 .channel-info h6 {
   font-family: var(--font-tech);
   font-size: 0.75rem;
   text-transform: uppercase;
   color: var(--text-dim);
+  margin-bottom: 2px;
 }
 
 .channel-info p {
   font-size: 0.92rem;
   font-weight: 600;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  margin: 0;
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-grid-pair {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 18px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-field {
   display: flex;
   flex-direction: column;
   gap: 7px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-field label {
@@ -1652,6 +1705,8 @@ body {
 }
 
 .form-input {
+  width: 100%;
+  box-sizing: border-box;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--glass-border);
   border-radius: 10px;
@@ -1675,30 +1730,39 @@ textarea.form-input {
 }
 
 .services-checkboxes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .checkbox-label {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 9px 12px;
-  border-radius: 8px;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--glass-border);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
+  color: #e2e8f0;
   cursor: pointer;
   transition: all var(--tr-fast);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .checkbox-label:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 240, 255, 0.05);
+  border-color: rgba(0, 240, 255, 0.3);
 }
 
 .checkbox-label input[type="checkbox"] {
   accent-color: var(--cyan-primary);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -1812,11 +1876,10 @@ textarea.form-input {
   .services-bento-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .calculator-glass-card {
+  .special-offer-card {
     grid-template-columns: 1fr;
-  }
-  .about-duo-grid {
-    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 34px 26px;
   }
   .contact-card-box {
     grid-template-columns: 1fr;
@@ -1899,9 +1962,8 @@ textarea.form-input {
   /* Compact Section Paddings (60% Vertical Height Saved) */
   .services-section,
   .agent-simulator-section,
-  .roi-calculator-section,
+  .special-offer-section,
   .portfolio-section,
-  .about-section,
   .testimonials-section,
   .contact-section {
     padding: 44px 0 !important;
@@ -2029,130 +2091,96 @@ textarea.form-input {
   }
 
   /* -------------------------------------------------------------
-     Services Bento Grid: Swipeable Horizontal Carousel (Snap-Scroll)
-     Reduces ~2,500px of scrolling to ONE compact card view!
+     Services Bento Grid: Executive Stacked Cards (2 Core Niches)
+     Provides effortless vertical reading on mobile phones
      ------------------------------------------------------------- */
   .services-bento-grid {
     display: flex !important;
-    overflow-x: auto !important;
-    scroll-snap-type: x mandatory !important;
-    -webkit-overflow-scrolling: touch !important;
-    gap: 12px !important;
-    padding: 4px 2px 10px 2px !important;
-    scrollbar-width: none !important;
-    margin: 0 -14px;
-    padding-left: 14px !important;
-    padding-right: 14px !important;
-  }
-
-  .services-bento-grid::-webkit-scrollbar {
-    display: none !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow-x: visible !important;
   }
 
   .bento-card {
-    flex: 0 0 84vw !important;
-    max-width: 320px !important;
-    scroll-snap-align: center !important;
-    padding: 18px 16px !important;
-    border-radius: 16px !important;
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 22px 18px !important;
+    border-radius: 18px !important;
     transform: none !important;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(8, 12, 22, 0.95) 100%) !important;
+    border: 1px solid rgba(0, 240, 255, 0.22) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.04) inset !important;
   }
 
   .bento-icon-wrapper {
-    width: 38px !important;
-    height: 38px !important;
-    border-radius: 10px !important;
-    margin-bottom: 10px !important;
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 12px !important;
+    margin-bottom: 12px !important;
   }
 
   .bento-icon-wrapper svg {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
 
   .bento-badge {
-    font-size: 0.62rem !important;
-    padding: 2px 6px !important;
-    margin-bottom: 6px !important;
+    font-size: 0.66rem !important;
+    padding: 3px 8px !important;
+    margin-bottom: 8px !important;
+    letter-spacing: 0.5px !important;
   }
 
   .bento-title {
-    font-size: 1.08rem !important;
-    margin-bottom: 6px !important;
+    font-size: 1.18rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 8px !important;
   }
 
   .bento-desc {
-    font-size: 0.8rem !important;
-    line-height: 1.45 !important;
-    margin-bottom: 10px !important;
+    font-size: 0.84rem !important;
+    line-height: 1.52 !important;
+    margin-bottom: 14px !important;
   }
 
   .bento-check-list {
-    gap: 6px !important;
-    margin-bottom: 12px !important;
-    padding-top: 10px !important;
+    gap: 8px !important;
+    margin-bottom: 16px !important;
+    padding-top: 12px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
   }
 
   .bento-check-list li {
-    font-size: 0.74rem !important;
-    gap: 6px !important;
+    font-size: 0.78rem !important;
+    line-height: 1.4 !important;
+    gap: 8px !important;
   }
 
   .bento-check-list li svg {
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
     flex-shrink: 0;
   }
 
   .bento-footer {
-    padding-top: 10px !important;
+    padding-top: 12px !important;
     margin-top: auto;
   }
 
-  .bento-pill {
-    font-size: 0.64rem !important;
-    padding: 2px 6px !important;
-  }
-
   .bento-action-link {
-    font-size: 0.78rem !important;
+    font-size: 0.82rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
   }
 
-  /* Carousel Indicators */
-  .mobile-swipe-indicator {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 12px;
-  }
-
-  .swipe-dots {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .swipe-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    cursor: pointer;
-    transition: all 0.25s ease;
-  }
-
-  .swipe-dot.active {
-    width: 16px;
-    border-radius: 100px;
-    background: var(--cyan-primary);
-    box-shadow: 0 0 8px var(--cyan-primary);
-  }
-
-  .swipe-text {
-    font-family: var(--font-tech);
-    font-size: 0.7rem;
-    color: var(--text-muted);
+  /* Hide carousel swipe indicator since 2 cards stack cleanly */
+  .mobile-swipe-indicator,
+  #services-swipe-indicator {
+    display: none !important;
   }
 
   /* -------------------------------------------------------------
@@ -2195,10 +2223,10 @@ textarea.form-input {
     display: flex !important;
     flex-direction: row !important;
     overflow-x: auto !important;
-    gap: 6px !important;
-    padding: 8px 10px !important;
+    gap: 8px !important;
+    padding: 10px 12px !important;
     border-right: none !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     scrollbar-width: none !important;
     -webkit-overflow-scrolling: touch !important;
   }
@@ -2212,25 +2240,27 @@ textarea.form-input {
   }
 
   .scenario-pill-btn {
-    flex: 0 0 auto !important;
-    padding: 6px 10px !important;
-    border-radius: 8px !important;
-    gap: 6px !important;
+    flex: 1 1 50% !important;
+    min-width: 130px !important;
+    padding: 8px 12px !important;
+    border-radius: 10px !important;
+    gap: 8px !important;
+    touch-action: manipulation;
   }
 
   .pill-icon {
-    width: 22px !important;
-    height: 22px !important;
-    border-radius: 5px !important;
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 6px !important;
   }
 
   .pill-icon svg {
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
   }
 
   .pill-meta h5 {
-    font-size: 0.74rem !important;
+    font-size: 0.78rem !important;
     white-space: nowrap !important;
     margin-bottom: 0 !important;
   }
@@ -2240,10 +2270,11 @@ textarea.form-input {
   }
 
   .terminal-console-viewport {
-    padding: 12px !important;
-    max-height: 230px !important;
-    font-size: 0.72rem !important;
-    line-height: 1.55 !important;
+    padding: 14px 12px !important;
+    min-height: 230px !important;
+    max-height: 270px !important;
+    font-size: 0.73rem !important;
+    line-height: 1.6 !important;
   }
 
   .log-line {
@@ -2251,64 +2282,49 @@ textarea.form-input {
   }
 
   /* -------------------------------------------------------------
-     AI ROI Calculator Compact Layout
+     Special Offer Section Compact Layout
      ------------------------------------------------------------- */
-  .calculator-glass-card {
-    padding: 16px 12px !important;
-    border-radius: 16px !important;
-    gap: 16px !important;
+  .special-offer-card {
+    padding: 22px 16px !important;
+    border-radius: 18px !important;
+    gap: 24px !important;
   }
 
-  .sliders-stack {
-    gap: 12px !important;
+  .offer-heading {
+    font-size: 1.5rem !important;
   }
 
-  .slider-unit {
-    gap: 4px !important;
+  .offer-subtext {
+    font-size: 0.88rem !important;
+    margin-bottom: 20px !important;
   }
 
-  .slider-top-row label {
-    font-size: 0.76rem !important;
-    line-height: 1.3;
-  }
-
-  .slider-badge-val {
-    font-size: 0.74rem !important;
-    padding: 2px 6px !important;
-  }
-
-  .custom-range-slider {
-    height: 4px !important;
-  }
-
-  .custom-range-slider::-webkit-slider-thumb {
-    width: 16px !important;
-    height: 16px !important;
-  }
-
-  .calc-display-panel {
-    padding: 14px 12px !important;
-    border-radius: 12px !important;
-  }
-
-  .display-metrics-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+  .offer-feature-item {
+    padding: 12px 14px !important;
     gap: 10px !important;
-    margin-bottom: 12px !important;
   }
 
-  .metric-cell-label {
-    font-size: 0.64rem !important;
-    margin-bottom: 2px !important;
+  .offer-feature-item h4 {
+    font-size: 0.88rem !important;
   }
 
-  .metric-cell-number {
-    font-size: 1.25rem !important;
+  .offer-feature-item p {
+    font-size: 0.78rem !important;
   }
 
-  .calc-display-panel .btn-primary {
-    padding: 10px !important;
-    font-size: 0.82rem !important;
+  .offer-pricing-box {
+    padding: 24px 18px !important;
+    border-radius: 16px !important;
+  }
+
+  .offer-huge-price .price-num {
+    font-size: 2.8rem !important;
+  }
+
+  .offer-cta-btn {
+    padding: 12px 14px !important;
+    font-size: 0.88rem !important;
+    touch-action: manipulation;
   }
 
   /* -------------------------------------------------------------
@@ -2335,6 +2351,7 @@ textarea.form-input {
     padding: 5px 12px !important;
     font-size: 0.74rem !important;
     white-space: nowrap !important;
+    touch-action: manipulation;
   }
 
   .case-studies-grid {
@@ -2394,92 +2411,6 @@ textarea.form-input {
   .case-tag {
     font-size: 0.66rem !important;
     padding: 2px 6px !important;
-  }
-
-  /* -------------------------------------------------------------
-     About Section: Compact Executive Avatar Layout
-     ------------------------------------------------------------- */
-  .about-duo-grid {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 16px !important;
-    align-items: center !important;
-  }
-
-  .about-photo-wrapper {
-    width: 105px !important;
-    height: 105px !important;
-    border-radius: 50% !important;
-    padding: 3px !important;
-    margin: 0 auto !important;
-    box-shadow: 0 0 25px rgba(0, 240, 255, 0.35) !important;
-    flex-shrink: 0 !important;
-  }
-
-  .photo-inner {
-    width: 100% !important;
-    height: 100% !important;
-    border-radius: 50% !important;
-    aspect-ratio: 1 / 1 !important;
-  }
-
-  .photo-inner img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    border-radius: 50% !important;
-  }
-
-  .about-text-column {
-    text-align: center !important;
-    width: 100% !important;
-  }
-
-  .about-lead-text {
-    font-size: 0.88rem !important;
-    line-height: 1.5 !important;
-    margin-bottom: 10px !important;
-    text-align: left !important;
-  }
-
-  .about-paragraphs {
-    font-size: 0.82rem !important;
-    line-height: 1.5 !important;
-    gap: 6px !important;
-    margin-bottom: 14px !important;
-    text-align: left !important;
-  }
-
-  .credentials-duo {
-    grid-template-columns: 1fr !important;
-    gap: 8px !important;
-    margin-bottom: 14px !important;
-    text-align: left !important;
-  }
-
-  .cred-card {
-    padding: 9px 10px !important;
-    border-radius: 8px !important;
-    gap: 8px !important;
-  }
-
-  .cred-card h4 {
-    font-size: 0.82rem !important;
-    margin-bottom: 1px !important;
-  }
-
-  .cred-card p {
-    font-size: 0.72rem !important;
-  }
-
-  .tech-arsenal-chips {
-    justify-content: center !important;
-    gap: 5px !important;
-  }
-
-  .tech-chip {
-    font-size: 0.68rem !important;
-    padding: 3px 8px !important;
   }
 
   /* -------------------------------------------------------------
@@ -2544,9 +2475,9 @@ textarea.form-input {
      Contact / Consultation Form Compact Layout
      ------------------------------------------------------------- */
   .contact-card-box {
-    padding: 18px 12px !important;
-    border-radius: 16px !important;
-    gap: 18px !important;
+    padding: 24px 18px !important;
+    border-radius: 20px !important;
+    gap: 24px !important;
   }
 
   .contact-left-col {
@@ -2554,77 +2485,81 @@ textarea.form-input {
   }
 
   .direct-channels-list {
-    gap: 8px !important;
-    margin-top: 12px !important;
+    gap: 10px !important;
+    margin-top: 16px !important;
   }
 
   .channel-link {
-    padding: 8px 10px !important;
-    border-radius: 8px !important;
-    gap: 8px !important;
+    padding: 10px 14px !important;
+    border-radius: 10px !important;
+    gap: 12px !important;
   }
 
   .channel-icon-pill {
-    width: 28px !important;
-    height: 28px !important;
-    border-radius: 6px !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 8px !important;
   }
 
   .channel-icon-pill svg {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
   }
 
   .channel-info h6 {
-    font-size: 0.62rem !important;
+    font-size: 0.68rem !important;
   }
 
   .channel-info p {
-    font-size: 0.76rem !important;
+    font-size: 0.82rem !important;
+    word-break: break-all;
   }
 
   .contact-form {
-    gap: 10px !important;
+    gap: 14px !important;
   }
 
   .form-grid-pair {
     grid-template-columns: 1fr !important;
-    gap: 8px !important;
+    gap: 12px !important;
   }
 
   .form-field {
-    gap: 3px !important;
+    gap: 5px !important;
   }
 
   .form-field label {
-    font-size: 0.72rem !important;
+    font-size: 0.78rem !important;
   }
 
   .form-input {
-    padding: 9px 11px !important;
-    font-size: 0.82rem !important;
-    border-radius: 8px !important;
+    padding: 12px 14px !important;
+    font-size: 16px !important; /* Prevents auto-zoom in mobile Safari */
+    border-radius: 10px !important;
   }
 
   textarea.form-input {
-    min-height: 75px !important;
+    min-height: 90px !important;
   }
 
   .services-checkboxes {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 5px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
   }
 
   .checkbox-label {
-    padding: 6px 7px !important;
-    font-size: 0.7rem !important;
-    border-radius: 6px !important;
-    gap: 5px !important;
+    padding: 10px 12px !important;
+    font-size: 0.8rem !important;
+    border-radius: 8px !important;
+    gap: 8px !important;
   }
 
   .contact-form button[type="submit"] {
-    padding: 11px !important;
-    font-size: 0.84rem !important;
+    padding: 14px !important;
+    font-size: 0.92rem !important;
+    border-radius: 12px !important;
+    min-height: 48px !important;
   }
 
   /* -------------------------------------------------------------
@@ -2675,19 +2610,66 @@ textarea.form-input {
 
 /* ==========================================================================
    Small Mobile Phones (max-width: 380px)
+   Ultra-Compact Polish for Compact Screens (iPhone SE, Small Androids)
    ========================================================================== */
 @media (max-width: 380px) {
+  .brand-sub {
+    display: none !important;
+  }
+
+  .hero-pill-badge {
+    font-size: 0.65rem !important;
+    padding: 4px 9px !important;
+  }
+
   .hero-main-title {
-    font-size: 1.62rem !important;
+    font-size: 1.55rem !important;
+    line-height: 1.15 !important;
   }
+
   .hud-tile-value {
-    font-size: 0.95rem !important;
+    font-size: 0.92rem !important;
   }
+
+  .bento-card {
+    width: 100% !important;
+    flex: 1 1 auto !important;
+    max-width: 100% !important;
+    padding: 18px 14px !important;
+  }
+
+  .bento-title {
+    font-size: 1.08rem !important;
+  }
+
+  .scenario-pill-btn {
+    flex: 1 1 100% !important;
+    min-width: 100% !important;
+  }
+
+  .offer-heading {
+    font-size: 1.35rem !important;
+  }
+
+  .offer-huge-price .price-num {
+    font-size: 2.35rem !important;
+  }
+
+  .offer-pricing-box {
+    padding: 18px 14px !important;
+  }
+
   .services-checkboxes {
-    grid-template-columns: 1fr !important;
+    gap: 6px !important;
   }
-  .bento-card,
+
+  .checkbox-label {
+    padding: 8px 10px !important;
+    font-size: 0.76rem !important;
+  }
+
   .testimonial-quote-card {
-    flex: 0 0 90vw !important;
+    flex: 0 0 88vw !important;
+    max-width: 290px !important;
   }
 }

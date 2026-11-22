@@ -1,5 +1,5 @@
 /**
- * HAMMAD.AI - Application Logic & Interactive Systems
+ * GREEKVEX.AI - Application Logic & Interactive Systems
  * Includes:
  * 1. Web Audio Synthesizer (Sci-Fi Audio Engine)
  * 2. Dynamic Typing Engine
@@ -121,11 +121,10 @@
   const dynamicTypeEl = document.getElementById('dynamic-type-text');
   if (dynamicTypeEl) {
     const roles = [
-      'Autonomous AI Agent Swarms',
-      'Enterprise LLM & RAG Systems',
-      'High-Speed Vision AI Pipelines',
-      'Custom Deep Learning Models',
-      'Scalable MLOps & Triton Servers'
+      'AI Phone Receptionists & Voice Agents',
+      'Autonomous Business Workflow Ecosystems',
+      'Hands-Free CRM & Booking Pipelines',
+      'Zero-Touch Enterprise Operations'
     ];
 
     let roleIdx = 0;
@@ -192,40 +191,27 @@
   const scenarioBtns = document.querySelectorAll('.scenario-btn, .scenario-pill-btn');
 
   const scenarios = {
-    'multi-agent': [
-      { text: '[INIT] Spawning Autonomous Multi-Agent Swarm (LangGraph + CrewAI)...', class: 'log-sys' },
-      { text: '[PLANNER] Task: "Execute Cross-Market Arbitrage & Sentiment Synthesis"', class: 'log-cyan' },
-      { text: '[AGENT 1: WebCrawler] Ingested 14,200 real-time financial filings and news streams', class: 'log-purple' },
-      { text: '[AGENT 2: NLP Analyzer] Running fine-tuned FinBERT sentiment extraction: Confidence 98.7%', class: 'log-green' },
-      { text: '[AGENT 3: Risk Guardian] Evaluating portfolio exposure constraint: PASSED (Value-at-Risk < 1.2%)', class: 'log-yellow' },
-      { text: '[EXECUTION] 4 autonomous trades routed with 3.8ms latency. PnL projection: +14.8%', class: 'log-green' },
-      { text: '[SUCCESS] Swarm mission cycle completed in 218ms. Awaiting next trigger.', class: 'log-cyan' }
+    'voice-agent': [
+      { text: '[INBOUND CALL] Ringing detected from +1 (415) 892-4100 on Line 1...', class: 'log-sys' },
+      { text: '[VOICE ENGINE] Sub-450ms conversational speech pipeline engaged (Twilio + Voice Model)', class: 'log-cyan' },
+      { text: '[RECEPTIONIST] "Hello! Thank you for calling Apex Care. How can I assist you with your booking today?"', class: 'log-green' },
+      { text: '[CALLER INTENT] Parsed: Schedule urgent dental consultation for Sarah Jenkins', class: 'log-yellow' },
+      { text: '[CALENDAR API] Checking Google Calendar availability... Slot confirmed: Tomorrow at 2:30 PM', class: 'log-purple' },
+      { text: '[SHEETS SYNC] Appending Row #318 to Google Sheets: Caller Info, Duration (2m 14s), Summary & Tag', class: 'log-green' },
+      { text: '[NOTIFICATIONS] Dispatched instant confirmation email & SMS via SendGrid and Twilio', class: 'log-cyan' },
+      { text: '[CALL TRANSFER] Caller requested insurance specialist: Initiating Advanced Warm Transfer...', class: 'log-yellow' },
+      { text: '[WARM HANDOFF] Connected to Billing Ext. 104 with complete context & pre-briefed caller summary', class: 'log-green' },
+      { text: '[STATUS] Call handled successfully with zero hold time or human delay.', class: 'log-cyan' }
     ],
-    'enterprise-rag': [
-      { text: '[INIT] Hybrid RAG Engine (Qdrant Vector DB + Dense/Sparse BM25 Search)...', class: 'log-sys' },
-      { text: '[INPUT] Query: "Explain our Q3 liability clauses under section 4.8.2"', class: 'log-cyan' },
-      { text: '[EMBED] text-embedding-3-large generated 3,072-dim vector in 18ms', class: 'log-purple' },
-      { text: '[RETRIEVE] Top-k 20 chunks retrieved across 850,000 PDF pages (Cosine: 0.942)', class: 'log-purple' },
-      { text: '[RERANK] Cohere Rerank-v3 filtered to 4 ground-truth legal citations', class: 'log-yellow' },
-      { text: '[SYNTHESIS] Claude 3.5 Sonnet generated verified answer with 0% hallucination score', class: 'log-green' },
-      { text: '[COMPLETED] Total latency: 412ms | Token efficiency: 94.2%', class: 'log-green' }
-    ],
-    'vision-defect': [
-      { text: '[STREAM] Connecting 4K industrial optical camera @ 60 FPS...', class: 'log-sys' },
-      { text: '[MODEL] Loading YOLOv10-TensorRT optimized FP16 engine on NVIDIA Jetson Orin...', class: 'log-cyan' },
-      { text: '[FRAME #18420] Surface Inspection: PCB Micro-controller Unit #417', class: 'log-sys' },
-      { text: '[DETECT] Micro-fracture detected in pin 12 solder joint (Width: 0.04mm)', class: 'log-yellow' },
-      { text: '[CONFIDENCE] 99.8% precision | Class: "Solder_Bridge_Defect"', class: 'log-green' },
-      { text: '[TRIGGER] Actuating robotic rejection arm | Pipeline latency: 2.1ms', class: 'log-cyan' },
-      { text: '[LOGGED] Defect telemetry synchronized to edge dashboard & cloud analytics.', class: 'log-green' }
-    ],
-    'model-finetune': [
-      { text: '[MLOPS] Initializing QLoRA 4-bit Fine-Tuning Pipeline for Llama-3-70B...', class: 'log-sys' },
-      { text: '[DATA] Ingesting 45,000 proprietary enterprise medical/legal domain pairs', class: 'log-purple' },
-      { text: '[PARAM] Rank r=64, Alpha=128, Gradient Checkpointing enabled on 4x H100 SXM5', class: 'log-cyan' },
-      { text: '[EPOCH 3/3] Training Loss: 0.284 | Validation Perplexity: 3.12 (SOTA)', class: 'log-green' },
-      { text: '[BENCHMARK] Domain accuracy improved from 68.2% (base) -> 89.6% (tuned)', class: 'log-yellow' },
-      { text: '[EXPORT] Quantized GGUF & vLLM engine deployed to production cluster with Triton.', class: 'log-cyan' }
+    'workflow-engine': [
+      { text: '[WEBHOOK TRIGGER] Inbound high-intent B2B demo request received from Website Portal', class: 'log-sys' },
+      { text: '[DATA ENRICHMENT] Querying Clearbit API: Apex Global Logistics (240 staff, ARR $34M)', class: 'log-purple' },
+      { text: '[QUALIFICATION] AI Lead Scoring: 96/100 (Tier-1 Enterprise Qualified)', class: 'log-green' },
+      { text: '[CRM AUTOMATION] Created Contact & Deal in HubSpot CRM | Assigned to Senior Account Exec', class: 'log-cyan' },
+      { text: '[INVOICE & CONTRACT] Auto-drafted tailored proposal & sent DocuSign envelope to client', class: 'log-yellow' },
+      { text: '[TEAM SYNC] Pushed real-time alert to Slack #revenue-alerts with one-click approval buttons', class: 'log-purple' },
+      { text: '[ONBOARDING] Provisioned client portal, generated credentials & dispatched welcome email kit', class: 'log-green' },
+      { text: '[COMPLETED] Multi-app workflow completed in 540ms | 0 manual touchpoints required.', class: 'log-cyan' }
     ]
   };
 
@@ -236,14 +222,14 @@
     clearInterval(activeInterval);
     terminalScreen.innerHTML = '';
 
-    const lines = scenarios[scenarioKey] || scenarios['multi-agent'];
+    const lines = scenarios[scenarioKey] || scenarios['voice-agent'];
     let lineIdx = 0;
 
     function addNextLine() {
       if (lineIdx >= lines.length) {
         const promptLine = document.createElement('div');
         promptLine.className = 'log-line';
-        promptLine.innerHTML = `<span class="log-cyan">hammad@ai-core:~$</span> <span class="terminal-cursor-blink"></span>`;
+        promptLine.innerHTML = `<span class="log-cyan">greekvex@ai-core:~$</span> <span class="terminal-cursor-blink"></span>`;
         terminalScreen.appendChild(promptLine);
         terminalScreen.scrollTop = terminalScreen.scrollHeight;
         return;
@@ -280,69 +266,26 @@
 
   // Start with default scenario
   if (scenarioBtns.length > 0) {
-    runTerminalScenario('multi-agent');
+    runTerminalScenario('voice-agent');
   }
 
   /* ==========================================================================
-     5. DYNAMIC AI ROI CALCULATOR
+     5. SPECIAL OFFER PACKAGE INTERACTIONS
      ========================================================================== */
-  const teamSlider = document.getElementById('slider-team-size');
-  const hoursSlider = document.getElementById('slider-hours-manual');
-  const rateSlider = document.getElementById('slider-hourly-rate');
-
-  const teamValDisplay = document.getElementById('val-team-size');
-  const hoursValDisplay = document.getElementById('val-hours-manual');
-  const rateValDisplay = document.getElementById('val-hourly-rate');
-
-  const metricSavings = document.getElementById('metric-savings');
-  const metricHours = document.getElementById('metric-hours-saved');
-  const metricRoi = document.getElementById('metric-roi-multiplier');
-  const metricPayback = document.getElementById('metric-payback-months');
-
-  function calculateRoi() {
-    if (!teamSlider || !hoursSlider || !rateSlider) return;
-
-    const teamSize = parseInt(teamSlider.value, 10);
-    const hoursPerWeek = parseInt(hoursSlider.value, 10);
-    const hourlyRate = parseInt(rateSlider.value, 10);
-
-    // Update labels
-    if (teamValDisplay) teamValDisplay.textContent = `${teamSize} Engineers / Ops`;
-    if (hoursValDisplay) hoursValDisplay.textContent = `${hoursPerWeek} hrs/week`;
-    if (rateValDisplay) rateValDisplay.textContent = `$${hourlyRate}/hr`;
-
-    // AI Automation removes ~65% of repetitive work
-    const automationRate = 0.65;
-    const weeklyHoursSaved = teamSize * hoursPerWeek * automationRate;
-    const annualHoursSaved = Math.round(weeklyHoursSaved * 50);
-    const annualCostSavings = Math.round(annualHoursSaved * hourlyRate);
-
-    // Estimated implementation cost based on team complexity
-    const estimatedCost = Math.max(25000, teamSize * 1400);
-    const roiMultiplier = ((annualCostSavings / estimatedCost)).toFixed(1);
-    const paybackMonths = Math.max(1.2, ((estimatedCost / (annualCostSavings / 12)))).toFixed(1);
-
-    // Format currency
-    const formattedSavings = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
-    }).format(annualCostSavings);
-
-    const formattedHours = new Intl.NumberFormat('en-US').format(annualHoursSaved);
-
-    if (metricSavings) metricSavings.textContent = formattedSavings;
-    if (metricHours) metricHours.textContent = `${formattedHours} hrs`;
-    if (metricRoi) metricRoi.textContent = `${roiMultiplier}x ROI`;
-    if (metricPayback) metricPayback.textContent = `${paybackMonths} Mo`;
-  }
-
-  [teamSlider, hoursSlider, rateSlider].forEach((slider) => {
-    if (slider) {
-      slider.addEventListener('input', calculateRoi);
-    }
+  const claimOfferBtns = document.querySelectorAll('.offer-cta-btn, a[href="#offer"]');
+  claimOfferBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      sound.clickChime();
+      const budgetSelect = document.getElementById('project-budget');
+      if (budgetSelect) {
+        budgetSelect.value = 'special-offer';
+      }
+      const specialCheckbox = document.querySelector('input[name="services"][value="special-offer"]');
+      if (specialCheckbox) {
+        specialCheckbox.checked = true;
+      }
+    });
   });
-  calculateRoi();
 
   /* ==========================================================================
      6. PORTFOLIO CATEGORY FILTER
@@ -475,14 +418,14 @@
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
 
-      submitBtn.innerHTML = `<span>Transmitting to Hammad's AI Nexus...</span>`;
+      submitBtn.innerHTML = `<span>Transmitting to Greekvex AI Core...</span>`;
       submitBtn.disabled = true;
 
       setTimeout(() => {
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
         contactForm.reset();
-        showToast('Inquiry Transmitted! Hammad will reply with an architecture proposal within 12 hours.');
+        showToast('Inquiry Transmitted! Greekvex will review and reply within 12 hours.');
       }, 1200);
     });
   }
@@ -542,14 +485,10 @@
   }
 
   /* ==========================================================================
-     11. MOBILE HORIZONTAL CAROUSEL SYNC (Services & Testimonials)
+     11. MOBILE HORIZONTAL CAROUSEL SYNC (Testimonials)
      ========================================================================== */
   function initMobileCarousels() {
     const carousels = [
-      {
-        grid: document.querySelector('.services-bento-grid'),
-        indicator: document.getElementById('services-swipe-indicator')
-      },
       {
         grid: document.querySelector('.testimonials-grid'),
         indicator: document.getElementById('testimonials-swipe-indicator')

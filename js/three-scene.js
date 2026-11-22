@@ -1,5 +1,5 @@
 /**
- * HAMMAD.AI - Three.js 3D WebGL Systems
+ * GREEKVEX.AI - Three.js 3D WebGL Systems
  * 1. Fullscreen Hero Background 3D Quantum Neural Globe (Dynamic 60Hz / 120Hz+ Adaptive Engine)
  * 2. Ambient Deep Space Synaptic Network
  * 3. Real-Time Hardware Refresh Rate & FPS Detection (Delta-Time Normalized)
